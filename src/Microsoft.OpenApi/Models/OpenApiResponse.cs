@@ -10,7 +10,7 @@ namespace Microsoft.OpenApi
     /// <summary>
     /// Response object.
     /// </summary>
-    public class OpenApiResponse : IOpenApiExtensible, IOpenApiResponse, IOpenApiSummarizedElement
+    public class OpenApiResponse : IOpenApiExtensible, IOpenApiResponse
     {
         /// <inheritdoc/>
         public string? Summary { get; set; }
@@ -41,7 +41,7 @@ namespace Microsoft.OpenApi
         internal OpenApiResponse(IOpenApiResponse response)
         {
             Utils.CheckArgumentNull(response);
-            Summary = (response as IOpenApiSummarizedElement)?.Summary ?? Summary;
+            Summary = response.Summary ?? Summary;
             Description = response.Description ?? Description;
             Headers = response.Headers != null ? new Dictionary<string, IOpenApiHeader>(response.Headers) : null;
             Content = response.Content != null ? new Dictionary<string, OpenApiMediaType>(response.Content) : null;

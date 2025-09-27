@@ -8,7 +8,7 @@ namespace Microsoft.OpenApi
     /// <summary>
     /// Response Object Reference.
     /// </summary>
-    public class OpenApiResponseReference : BaseOpenApiReferenceHolder<OpenApiResponse, IOpenApiResponse, OpenApiReferenceWithDescription>, IOpenApiResponse, IOpenApiSummarizedElement
+    public class OpenApiResponseReference : BaseOpenApiReferenceHolder<OpenApiResponse, IOpenApiResponse, OpenApiReferenceWithDescription>, IOpenApiResponse
     {
         /// <summary>
         /// Constructor initializing the reference object.
@@ -35,8 +35,8 @@ namespace Microsoft.OpenApi
         /// <inheritdoc/>
         public string? Summary 
         { 
-            get => (Target as IOpenApiSummarizedElement)?.Summary; 
-            set { if (Target is IOpenApiSummarizedElement summarizedTarget) summarizedTarget.Summary = value; }
+            get => Target?.Summary; 
+            set { if (Target != null) Target.Summary = value; }
         }
 
         /// <inheritdoc/>

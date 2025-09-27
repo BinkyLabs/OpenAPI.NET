@@ -166,6 +166,22 @@ namespace Microsoft.OpenApi.Tests.Models
             }
         };
 
+        private static OpenApiResponse ResponseWithSummary => new OpenApiResponse
+        {
+            Summary = "Successful response",
+            Description = "A detailed description of a successful response",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                ["application/json"] = new OpenApiMediaType
+                {
+                    Schema = new OpenApiSchema()
+                    {
+                        Type = JsonSchemaType.Object
+                    }
+                }
+            }
+        };
+
         [Theory]
         [InlineData(OpenApiSpecVersion.OpenApi3_0, OpenApiConstants.Json)]
         [InlineData(OpenApiSpecVersion.OpenApi2_0, OpenApiConstants.Json)]
@@ -398,6 +414,92 @@ headers:
 
             // Assert
             await Verifier.Verify(outputStringWriter).UseParameters(produceTerseOutput);
+        }
+
+        [Fact]
+        public async Task SerializeResponseWithSummaryAsV32Works()
+        {
+            // Arrange
+            var expected = @"{
+  ""summary"": ""Successful response"",
+  ""description"": ""A detailed description of a successful response"",
+  ""content"": {
+    ""application/json"": {
+      ""schema"": {
+        ""type"": ""object""
+      }
+    }
+  }
+}";
+
+            // Act
+            var actual = await ResponseWithSummary.SerializeAsJsonAsync(OpenApiSpecVersion.OpenApi3_2);
+
+            // Assert
+            actual = actual.MakeLineBreaksEnvironmentNeutral();
+            expected = expected.MakeLineBreaksEnvironmentNeutral();
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public async Task SerializeResponseWithSummaryAsV31Works()
+        {
+            // Arrange
+            var expected = @"{
+  ""description"": ""A detailed description of a successful response"",
+  ""content"": {
+    ""application/json"": {
+      ""schema"": {
+        ""type"": ""object""
+      }
+    }
+  },
+  ""x-oai-summary"": ""Successful response""
+}";
+
+            // Act
+            var actual = await ResponseWithSummary.SerializeAsJsonAsync(OpenApiSpecVersion.OpenApi3_1);
+
+            // Assert
+            actual = actual.MakeLineBreaksEnvironmentNeutral();
+            expected = expected.MakeLineBreaksEnvironmentNeutral();
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public async Task SerializeResponseWithSummaryAsV3Works()
+        {
+            // Arrange
+            var expected = @"{
+  ""description"": ""A detailed description of a successful response"",
+  ""content"": {
+    ""application/json"": {
+      ""schema"": {
+        ""type"": ""object""
+      }
+    }
+  },
+  ""x-oai-summary"": ""Successful response""
+}";
+
+            // Act
+            var actual = await ResponseWithSummary.SerializeAsJsonAsync(OpenApiSpecVersion.OpenApi3_0);
+
+            // Assert
+            actual = actual.MakeLineBreaksEnvironmentNeutral();
+            expected = expected.MakeLineBreaksEnvironmentNeutral();
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ResponseWithSummaryShouldImplementIOpenApiSummarizedElement()
+        {
+            // Arrange
+            var response = new OpenApiResponse { Summary = "Test summary" };
+
+            // Act & Assert
+            Assert.IsAssignableFrom<IOpenApiSummarizedElement>(response);
+            Assert.Equal("Test summary", response.Summary);
         }
     }
 }

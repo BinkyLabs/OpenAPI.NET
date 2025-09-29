@@ -35,8 +35,8 @@ namespace Microsoft.OpenApi
         /// <inheritdoc/>
         public string? Summary 
         { 
-            get => Target?.Summary; 
-            set { if (Target != null) Target.Summary = value; }
+            get => string.IsNullOrEmpty(Reference.Summary) ? Target?.Summary : Reference.Summary;
+            set => Reference.Summary = value;
         }
 
         /// <inheritdoc/>

@@ -70,9 +70,9 @@ namespace Microsoft.OpenApi
             return new OpenApiResponseReference(this);
         }
         /// <inheritdoc/>
-        protected override OpenApiReferenceWithDescription CopyReference(OpenApiReferenceWithDescription sourceReference)
+        protected override OpenApiReferenceWithDescriptionAndSummary CopyReference(OpenApiReferenceWithDescriptionAndSummary sourceReference)
         {
-            return new OpenApiReferenceWithDescription(sourceReference);
+            return new OpenApiReferenceWithDescriptionAndSummary(sourceReference);
         }
     }
 }

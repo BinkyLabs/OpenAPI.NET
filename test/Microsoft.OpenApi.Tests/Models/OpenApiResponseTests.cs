@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
@@ -436,7 +437,7 @@ headers:
             var actual = await ResponseWithSummary.SerializeAsJsonAsync(OpenApiSpecVersion.OpenApi3_2);
 
             // Assert
-             Assert.True(JsonNode.DeepEquals(JsonNode.Parse(expected), JsonNode.Parse(actual)));
+            Assert.True(JsonNode.DeepEquals(JsonNode.Parse(expected), JsonNode.Parse(actual)));
         }
 
         [Fact]

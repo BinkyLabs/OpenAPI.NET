@@ -8,7 +8,7 @@ namespace Microsoft.OpenApi
     /// <summary>
     /// Response Object Reference.
     /// </summary>
-    public class OpenApiResponseReference : BaseOpenApiReferenceHolder<OpenApiResponse, IOpenApiResponse, OpenApiReferenceWithDescription>, IOpenApiResponse
+    public class OpenApiResponseReference : BaseOpenApiReferenceHolder<OpenApiResponse, IOpenApiResponse, OpenApiReferenceWithDescriptionAndSummary>, IOpenApiResponse
     {
         /// <summary>
         /// Constructor initializing the reference object.

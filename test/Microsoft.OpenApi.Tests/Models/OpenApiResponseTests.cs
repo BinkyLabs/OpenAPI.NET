@@ -483,7 +483,7 @@ headers:
             var actual = await ResponseWithSummary.SerializeAsJsonAsync(OpenApiSpecVersion.OpenApi3_0);
 
             // Assert
-             Assert.True(JsonNode.DeepEquals(JsonNode.Parse(expected), JsonNode.Parse(actual)));
+            Assert.True(JsonNode.DeepEquals(JsonNode.Parse(expected), JsonNode.Parse(actual)));
         }
 
         [Fact]
@@ -493,7 +493,7 @@ headers:
             var response = new OpenApiResponse { Summary = "Test summary" };
 
             // Act & Assert
-            Assert.IsAssignableFrom<IOpenApiSummarizedElement>(response);
+            Assert.IsType<IOpenApiSummarizedElement>(response, exactMatch: false);
             Assert.Equal("Test summary", response.Summary);
         }
     }

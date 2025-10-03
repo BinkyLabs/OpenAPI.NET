@@ -1,42 +1,42 @@
 ```
 
-BenchmarkDotNet v0.15.2, Linux Ubuntu 24.04.2 LTS (Noble Numbat)
-AMD EPYC 7763, 1 CPU, 4 logical and 2 physical cores
-.NET SDK 8.0.413
-  [Host]   : .NET 8.0.19 (8.0.1925.36514), X64 RyuJIT AVX2
-  ShortRun : .NET 8.0.19 (8.0.1925.36514), X64 RyuJIT AVX2
+BenchmarkDotNet v0.15.4, Windows 11 (10.0.26200.6584)
+11th Gen Intel Core i7-1185G7 3.00GHz, 1 CPU, 8 logical and 4 physical cores
+.NET SDK 8.0.414
+  [Host]   : .NET 8.0.20 (8.0.20, 8.0.2025.41914), X64 RyuJIT x86-64-v4
+  ShortRun : .NET 8.0.20 (8.0.20, 8.0.2025.41914), X64 RyuJIT x86-64-v4
 
 Job=ShortRun  IterationCount=3  LaunchCount=1  
 WarmupCount=3  
 
 ```
-| Method                      | Mean         | Error     | StdDev    | Gen0   | Allocated |
-|---------------------------- |-------------:|----------:|----------:|-------:|----------:|
-| EmptyApiCallback            |    16.112 ns |  5.784 ns | 0.3170 ns | 0.0019 |      32 B |
-| EmptyApiComponents          |    19.110 ns | 22.757 ns | 1.2474 ns | 0.0062 |     104 B |
-| EmptyApiContact             |     9.642 ns | 11.245 ns | 0.6164 ns | 0.0029 |      48 B |
-| EmptyApiDiscriminator       |    12.330 ns |  5.798 ns | 0.3178 ns | 0.0024 |      40 B |
-| EmptyDocument               | 1,151.986 ns | 65.900 ns | 3.6122 ns | 0.0668 |    1136 B |
-| EmptyApiEncoding            |    10.202 ns |  4.448 ns | 0.2438 ns | 0.0033 |      56 B |
-| EmptyApiExample             |    13.840 ns | 18.878 ns | 1.0348 ns | 0.0033 |      56 B |
-| EmptyApiExternalDocs        |    13.485 ns | 20.898 ns | 1.1455 ns | 0.0024 |      40 B |
-| EmptyApiHeader              |    14.911 ns | 21.281 ns | 1.1665 ns | 0.0048 |      80 B |
-| EmptyApiInfo                |    17.285 ns | 11.383 ns | 0.6239 ns | 0.0048 |      80 B |
-| EmptyApiLicense             |    15.353 ns | 15.752 ns | 0.8634 ns | 0.0029 |      48 B |
-| EmptyApiLink                |    13.631 ns | 16.538 ns | 0.9065 ns | 0.0043 |      72 B |
-| EmptyApiMediaType           |     8.334 ns |  3.227 ns | 0.1769 ns | 0.0033 |      56 B |
-| EmptyApiOAuthFlow           |    10.103 ns |  8.885 ns | 0.4870 ns | 0.0033 |      56 B |
-| EmptyApiOAuthFlows          |    11.514 ns |  6.548 ns | 0.3589 ns | 0.0033 |      56 B |
-| EmptyApiOperation           |    85.834 ns |  6.257 ns | 0.3430 ns | 0.0224 |     376 B |
-| EmptyApiParameter           |    18.951 ns | 23.964 ns | 1.3135 ns | 0.0057 |      96 B |
-| EmptyApiPathItem            |    16.662 ns | 19.083 ns | 1.0460 ns | 0.0038 |      64 B |
-| EmptyApiPaths               |    63.937 ns | 18.114 ns | 0.9929 ns | 0.0148 |     248 B |
-| EmptyApiRequestBody         |    10.680 ns | 16.237 ns | 0.8900 ns | 0.0029 |      48 B |
-| EmptyApiResponse            |    13.962 ns | 34.919 ns | 1.9140 ns | 0.0033 |      56 B |
-| EmptyApiResponses           |    59.299 ns | 11.181 ns | 0.6129 ns | 0.0148 |     248 B |
-| EmptyApiSchema              |    22.670 ns | 30.835 ns | 1.6902 ns | 0.0244 |     408 B |
-| EmptyApiSecurityRequirement |    16.913 ns |  2.287 ns | 0.1254 ns | 0.0062 |     104 B |
-| EmptyApiSecurityScheme      |    14.815 ns | 44.214 ns | 2.4235 ns | 0.0052 |      88 B |
-| EmptyApiServer              |    14.207 ns | 19.311 ns | 1.0585 ns | 0.0029 |      48 B |
-| EmptyApiServerVariable      |    13.801 ns | 35.161 ns | 1.9273 ns | 0.0029 |      48 B |
-| EmptyApiTag                 |     8.223 ns |  4.013 ns | 0.2200 ns | 0.0029 |      48 B |
+| Method                      | Mean       | Error         | StdDev      | Gen0   | Gen1   | Allocated |
+|---------------------------- |-----------:|--------------:|------------:|-------:|-------:|----------:|
+| EmptyApiCallback            |  10.878 ns |    19.9347 ns |   1.0927 ns | 0.0051 |      - |      32 B |
+| EmptyApiComponents          |  22.201 ns |   103.1325 ns |   5.6530 ns | 0.0179 |      - |     112 B |
+| EmptyApiContact             |   6.480 ns |    19.5579 ns |   1.0720 ns | 0.0076 |      - |      48 B |
+| EmptyApiDiscriminator       |   3.720 ns |     7.4808 ns |   0.4100 ns | 0.0076 |      - |      48 B |
+| EmptyDocument               | 609.429 ns | 1,856.4007 ns | 101.7556 ns | 0.1822 | 0.0005 |    1144 B |
+| EmptyApiEncoding            |   8.411 ns |    31.0542 ns |   1.7022 ns | 0.0089 |      - |      56 B |
+| EmptyApiExample             |   6.252 ns |     6.6823 ns |   0.3663 ns | 0.0115 |      - |      72 B |
+| EmptyApiExternalDocs        |   4.488 ns |     7.6954 ns |   0.4218 ns | 0.0064 |      - |      40 B |
+| EmptyApiHeader              |   5.854 ns |    24.3009 ns |   1.3320 ns | 0.0127 |      - |      80 B |
+| EmptyApiInfo                |   8.092 ns |    40.7052 ns |   2.2312 ns | 0.0127 |      - |      80 B |
+| EmptyApiLicense             |   4.119 ns |     4.6988 ns |   0.2576 ns | 0.0076 |      - |      48 B |
+| EmptyApiLink                |   5.871 ns |    27.3828 ns |   1.5009 ns | 0.0115 |      - |      72 B |
+| EmptyApiMediaType           |   6.413 ns |     7.4302 ns |   0.4073 ns | 0.0127 |      - |      80 B |
+| EmptyApiOAuthFlow           |   5.674 ns |    13.8818 ns |   0.7609 ns | 0.0102 |      - |      64 B |
+| EmptyApiOAuthFlows          |   5.290 ns |     7.3937 ns |   0.4053 ns | 0.0102 |      - |      64 B |
+| EmptyApiOperation           |  65.442 ns |    21.1815 ns |   1.1610 ns | 0.0598 |      - |     376 B |
+| EmptyApiParameter           |   5.995 ns |     3.5703 ns |   0.1957 ns | 0.0153 |      - |      96 B |
+| EmptyApiPathItem            |   7.622 ns |    13.4673 ns |   0.7382 ns | 0.0102 |      - |      64 B |
+| EmptyApiPaths               |  60.400 ns |    33.8603 ns |   1.8560 ns | 0.0395 |      - |     248 B |
+| EmptyApiRequestBody         |   4.788 ns |     2.1215 ns |   0.1163 ns | 0.0076 |      - |      48 B |
+| EmptyApiResponse            |   4.473 ns |     4.4310 ns |   0.2429 ns | 0.0102 |      - |      64 B |
+| EmptyApiResponses           |  51.883 ns |    17.2049 ns |   0.9431 ns | 0.0395 |      - |     248 B |
+| EmptyApiSchema              |  14.649 ns |    12.0213 ns |   0.6589 ns | 0.0650 |      - |     408 B |
+| EmptyApiSecurityRequirement |  11.993 ns |    51.2809 ns |   2.8109 ns | 0.0166 |      - |     104 B |
+| EmptyApiSecurityScheme      |  18.539 ns |    21.9011 ns |   1.2005 ns | 0.0153 |      - |      96 B |
+| EmptyApiServer              |  11.425 ns |    73.5659 ns |   4.0324 ns | 0.0089 |      - |      56 B |
+| EmptyApiServerVariable      |  16.196 ns |     0.6269 ns |   0.0344 ns | 0.0076 |      - |      48 B |
+| EmptyApiTag                 |  19.659 ns |     6.4560 ns |   0.3539 ns | 0.0115 |      - |      72 B |

@@ -1,18 +1,18 @@
 ```
 
-BenchmarkDotNet v0.15.2, Linux Ubuntu 24.04.2 LTS (Noble Numbat)
-AMD EPYC 7763, 1 CPU, 4 logical and 2 physical cores
-.NET SDK 8.0.413
-  [Host]   : .NET 8.0.19 (8.0.1925.36514), X64 RyuJIT AVX2
-  ShortRun : .NET 8.0.19 (8.0.1925.36514), X64 RyuJIT AVX2
+BenchmarkDotNet v0.15.4, Windows 11 (10.0.26200.6584)
+11th Gen Intel Core i7-1185G7 3.00GHz, 1 CPU, 8 logical and 4 physical cores
+.NET SDK 8.0.414
+  [Host]   : .NET 8.0.20 (8.0.20, 8.0.2025.41914), X64 RyuJIT x86-64-v4
+  ShortRun : .NET 8.0.20 (8.0.20, 8.0.2025.41914), X64 RyuJIT x86-64-v4
 
 Job=ShortRun  IterationCount=3  LaunchCount=1  
 WarmupCount=3  
 
 ```
-| Method       | Mean           | Error         | StdDev      | Gen0       | Gen1       | Gen2      | Allocated    |
-|------------- |---------------:|--------------:|------------:|-----------:|-----------:|----------:|-------------:|
-| PetStoreYaml |       529.5 μs |      62.50 μs |     3.43 μs |    23.4375 |     3.9063 |         - |    387.26 KB |
-| PetStoreJson |       240.8 μs |      15.69 μs |     0.86 μs |    13.6719 |     1.9531 |         - |     249.1 KB |
-| GHESYaml     | 1,097,576.6 μs | 100,584.42 μs | 5,513.37 μs | 26000.0000 | 20000.0000 | 3000.0000 | 384492.38 KB |
-| GHESJson     |   516,328.2 μs |  87,964.22 μs | 4,821.62 μs | 16000.0000 |  9000.0000 | 2000.0000 |  245957.5 KB |
+| Method       | Mean           | Error        | StdDev       | Gen0       | Gen1       | Gen2      | Allocated    |
+|------------- |---------------:|-------------:|-------------:|-----------:|-----------:|----------:|-------------:|
+| PetStoreYaml |       525.7 μs |   1,392.5 μs |     76.33 μs |    62.5000 |    11.7188 |         - |    387.72 KB |
+| PetStoreJson |       241.1 μs |     706.2 μs |     38.71 μs |    40.0391 |     8.7891 |         - |    249.86 KB |
+| GHESYaml     | 1,126,435.6 μs | 361,261.8 μs | 19,801.98 μs | 66000.0000 | 22000.0000 | 4000.0000 | 384551.24 KB |
+| GHESJson     |   970,225.6 μs | 187,943.8 μs | 10,301.84 μs | 40000.0000 | 16000.0000 | 3000.0000 | 246022.93 KB |
